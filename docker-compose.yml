@@ -7,9 +7,11 @@ services:
     hostname: zeo
     image: realestate
     volumes:
-      - /data/blobstorage:/data/blobstorage
-      - /data/filestorage:/data/filestorage
+      - /data/habas34/blobstorage:/plone/instance/var/blobstorage
+      - /data/habas34/filestorage:/plone/instance/var/filestorage
     command: zeoserver
+    healthcheck:
+      test: ["CMD", "nc", "-z", "-w5", "127.0.0.1", "8100"]
   instance:
     container_name: instance
     hostname: instance
