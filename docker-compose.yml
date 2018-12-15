@@ -1,0 +1,32 @@
+version: '3.5'
+services:
+  zeo:
+    build:
+      context: .
+    container_name: zeo
+    hostname: zeo
+    image: realestate
+    volumes:
+      - /data/blobstorage:/data/blobstorage
+      - /data/filestorage:/data/filestorage
+    command: zeoserver
+  instance:
+    container_name: instance
+    hostname: instance
+    image: realestate
+    environment:
+      - ZEO_ADDRESS=zeo:8080
+      - ZEO_HOST=db
+      - ZEO_PORT=8100
+    links:
+      - zeo:db
+    ports:
+      - 8080:8080
+    labels:
+      - "traefik.frontend.rule=Host:www.habas34.com;AddPrefix:/VirtualHostBase/https/www.habas34.com/plone/VirtualHostRoot"
+
+
+networks:
+  default:
+    external:
+      name: proxy
