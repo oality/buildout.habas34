@@ -6,7 +6,6 @@ ENV PIP=9.0.3 \
     WHEEL=0.31.1 \
     PLONE_MAJOR=5.1 \
     PLONE_VERSION=5.1.5 \
-    PLONE_MD5=ce3b87b1cb8ee30e577ae347d9bdd647 \
     LANG=fr_BE.UTF-8 \
     LANGUAGE=fr_BE:fr \
     LC_ALL=fr_BE.UTF-8
@@ -29,7 +28,6 @@ RUN buildDeps="dpkg-dev git gcc libbz2-dev libc6-dev libjpeg62-turbo-dev libopen
  && apt install -y locales \
  && apt-get install -y --no-install-recommends $buildDeps \
  && wget -O Plone.tgz https://launchpad.net/plone/$PLONE_MAJOR/$PLONE_VERSION/+download/Plone-$PLONE_VERSION-UnifiedInstaller.tgz \
- && echo "$PLONE_MD5 Plone.tgz" | md5sum -c - \
  && tar -xzf Plone.tgz \
  && cp -rv ./Plone-$PLONE_VERSION-UnifiedInstaller/base_skeleton/src /plone/instance/ \
  && cp -v ./Plone-$PLONE_VERSION-UnifiedInstaller/buildout_templates/buildout.cfg /plone/instance/buildout-base.cfg \
