@@ -7,8 +7,7 @@ services:
     hostname: zeo
     image: realestate
     volumes:
-      - /data/habas34/blobstorage:/plone/instance/var/blobstorage
-      - /data/habas34/filestorage:/plone/instance/var/filestorage
+      - ./var:/plone/var
     command: zeoserver
     healthcheck:
       test: ["CMD", "nc", "-z", "-w5", "127.0.0.1", "8100"]
@@ -26,7 +25,6 @@ services:
       - 8080:8080
     labels:
       - "traefik.frontend.rule=Host:www.habas34.com;AddPrefix:/VirtualHostBase/https/www.habas34.com/plone/VirtualHostRoot"
-
 
 networks:
   default:
