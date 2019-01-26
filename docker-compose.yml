@@ -3,28 +3,25 @@ services:
   zeo:
     build:
       context: .
-    container_name: zeo
-    hostname: zeo
     image: realestate
+    # image: oality/habas34
     volumes:
       - ./var:/plone/var
     command: zeoserver
     healthcheck:
       test: ["CMD", "nc", "-z", "-w5", "127.0.0.1", "8100"]
   instance:
-    container_name: instance
-    hostname: instance
     image: realestate
+    # image: oality/habas34
     environment:
-      - ZEO_ADDRESS=zeo:8080
+      - ZEO_ADDRESS=zeo:8100
       - ZEO_HOST=db
       - ZEO_PORT=8100
     links:
       - zeo:db
     ports:
       - 8080:8080
-    labels:
-      - "traefik.frontend.rule=Host:www.habas34.com;AddPrefix:/VirtualHostBase/https/www.habas34.com/plone/VirtualHostRoot"
+    command: fg
 
 networks:
   default:
