@@ -25,3 +25,6 @@ docker-build:
 
 cleanall:
 	rm -rf bin develop-eggs downloads include lib parts .installed.cfg .mr.developer.cfg bootstrap.py parts/omelette
+
+bash:
+	docker-compose run --rm -p 8080:8080 --name instance instance bash
