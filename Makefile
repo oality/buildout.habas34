@@ -5,7 +5,7 @@ buildout.cfg:
 	ln -s dev.cfg buildout.cfg
 
 bin/pip:
-	if [ -f /usr/bin/virtualenv-2.7 ] ; then virtualenv-2.7 .;else virtualenv -p python2.7 .;fi
+	if [ -f /usr/bin/virtualenv ] ; then virtualenv .;else virtualenv -p python2 .;fi
 	touch $@
 
 bin/buildout: bin/pip
