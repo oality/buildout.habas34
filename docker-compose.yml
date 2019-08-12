@@ -8,8 +8,6 @@ services:
     volumes:
       - ./var:/plone/var
     command: zeoserver
-    healthcheck:
-      test: ["CMD", "nc", "-z", "-w5", "127.0.0.1", "8100"]
   instance:
     image: realestate
     # image: oality/habas34
